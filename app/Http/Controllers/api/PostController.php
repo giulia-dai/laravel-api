@@ -17,4 +17,14 @@ class PostController extends Controller
             'results' => $posts
         ]);
     }
+
+    public function show($slug)
+    {
+        $post = Post::where('slug', $slug)->with(['type', 'technologies'])->first();
+
+        return response()->json([
+            'success' => true,
+            'post' => $post
+        ]);
+    }
 }
